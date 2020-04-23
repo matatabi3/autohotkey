@@ -207,6 +207,14 @@ F13 & m::Send {Blind}^m
 F13 & ,::Send {Blind}^,
 F13 & .::Send {Blind}^.
 F13 & /::Send {Blind}^/
+
+F13 & LButton::Send {Blind}^{LButton}
+F13 & RButton::Send {Blind}^{RButton}
+F13 & MButton::Send {Blind}^{MButton}
+F13 & WheelDown::Send {Blind}^{WheelDown}
+F13 & WheelUp::Send {Blind}^{WheelUp}
+F13 & WheelLeft::Send {Blind}^{WheelLeft}
+F13 & WheelRight::Send {Blind}^{WheelRight}
 ; /Capslock to F13 to Ctrl & Emacs move
 
 ; for like mac
