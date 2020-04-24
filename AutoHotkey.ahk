@@ -33,7 +33,7 @@ key_del()
   If is_target()
     Send {Blind}^d
   Else
-    Send {Del}
+    Send {Blind}{Del}
   Return
 }
 key_backspace()
@@ -41,7 +41,7 @@ key_backspace()
   If is_target()
     Send {Blind}^h
   Else
-    Send {BS}
+    Send {Blind}{BS}
   Return
 }
 kill_line()
@@ -59,7 +59,7 @@ quit()
   If is_target()
     Send {Blind}^g
   Else
-    Send {ESC}
+    Send {Blind}{ESC}
   Return
 }
 key_home()
@@ -192,11 +192,13 @@ F13 & d::key_del()
 F13 & f::key_right()
 F13 & g::quit()
 F13 & h::key_backspace()
-F13 & j::Send {Blind}^j
+; F13 & j::Send {Blind}^j
+F13 & j::Send {Blind}!{sc029} ; Alt + `
 F13 & k::kill_line()
 F13 & l::Send {Blind}^l
 F13 & sc027::Send {Blind}^{sc027}
 F13 & '::Send {Blind}^'
+; F13 & '::Send {Blind}!{sc029} ; Alt + `
 F13 & z::Send {Blind}^z
 F13 & x::Send {Blind}^x
 F13 & c::Send {Blind}^c
