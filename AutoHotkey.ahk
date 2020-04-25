@@ -125,9 +125,6 @@ backspace_line()
   Return
 }
 
-; TODO: all key remap with ctrl
-; *F13::LCtrl
-
 ; Capslock to F13 to Ctrl & Emacs cursor
 F13 & Enter::Send {Blind}^{Enter}
 F13 & Space::Send {Blind}^{Space}
@@ -192,20 +189,18 @@ F13 & d::key_del()
 F13 & f::key_right()
 F13 & g::quit()
 F13 & h::key_backspace()
-; F13 & j::Send {Blind}^j
 F13 & j::Send {Blind}!{sc029} ; Alt + `
 F13 & k::kill_line()
 F13 & l::Send {Blind}^l
 F13 & sc027::Send {Blind}^{sc027}
 F13 & '::Send {Blind}^'
-; F13 & '::Send {Blind}!{sc029} ; Alt + `
 F13 & z::Send {Blind}^z
 F13 & x::Send {Blind}^x
 F13 & c::Send {Blind}^c
 F13 & v::Send {Blind}^v
 F13 & b::key_left()
 F13 & n::key_down()
-F13 & m::Send {Blind}^m
+F13 & m::Send {Blind}{Enter}
 F13 & ,::Send {Blind}^,
 F13 & .::Send {Blind}^.
 F13 & /::Send {Blind}^/
