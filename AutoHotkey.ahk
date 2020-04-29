@@ -28,6 +28,13 @@ is_target()
   Return 0
 }
 
+keep_shift()
+{
+  IF GetKeyState("Shift")
+    Return 1
+  Return 0
+}
+
 key_del()
 {
   If is_target()
@@ -105,16 +112,17 @@ key_right()
 key_left()
 {
   If is_target()
-    Send {Blind}^
+    Send {Blind}^b
   Else
     Send {Blind}{Left}
   Return
 }
-delete_line()
+modified_backspace()
 {
-  Send {Home}{ShiftDown}{End}{ShiftUp}
-  Sleep 10
-  Send {Del}{Del}
+  If keep_shift()
+    backspace_line()
+  Else
+    backspace_word()
   Return
 }
 backspace_line()
@@ -124,13 +132,40 @@ backspace_line()
   Send {BS}{BS}
   Return
 }
-
+backspace_word()
+{
+  Send {ShiftDown}{CtrlDown}{Left}{CtrlUp}{ShiftUp}
+  Sleep 10
+  Send {BS}
+  Return
+}
+modified_delete()
+{
+  If keep_shift()
+    delete_line()
+  Else
+    delete_word()
+}
+delete_line()
+{
+  Send {Home}{ShiftDown}{End}{ShiftUp}
+  Sleep 10
+  Send {Del}{Del}
+  Return
+}
+delete_word()
+{
+  Send {ShiftDown}{CtrlDown}{Right}{CtrlUp}{ShiftUp}
+  Sleep 10
+  Send {Del}
+  Return
+}
 ; Capslock to F13 to Ctrl & Emacs cursor
 F13 & Enter::Send {Blind}^{Enter}
 F13 & Space::Send {Blind}^{Space}
 F13 & Tab::Send {Blind}^{Tab}
-F13 & BS::backspace_line()
-F13 & Del::delete_line()
+F13 & BS::modified_backspace()
+F13 & Del::modified_delete()
 F13 & Ins::Send {Blind}^{Ins}
 F13 & Up::Send {Blind}^{Up}
 F13 & Down::Send {Blind}^{Down}
@@ -183,7 +218,7 @@ F13 & p::key_up()
 F13 & {::Send {Blind}^{[}
 F13 & }::Send {Blind}^{]}
 F13 & \::Send {Blind}^{\}
-F13 & a::key_home()  
+F13 & a::key_home()
 F13 & s::Send {Blind}^s
 F13 & d::key_del()
 F13 & f::key_right()
