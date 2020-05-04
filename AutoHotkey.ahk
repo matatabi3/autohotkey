@@ -51,6 +51,16 @@ key_backspace()
     Send {Blind}{BS}
   Return
 }
+kill_home()
+{
+  If is_target()
+    Send {Blind}^u
+  Else
+    Send {ShiftDown}{Home}{ShiftUp}
+    Sleep 10
+    Send ^x
+  Return
+}
 kill_line()
 {
   If is_target()
@@ -127,7 +137,7 @@ modified_backspace()
 }
 backspace_line()
 {
-  Send {End}{ShiftDown}{Home}{ShiftUp}
+  Send {End}{ShiftDown}{Home}{Home}{ShiftUp}
   Sleep 10
   Send {BS}{BS}
   Return
@@ -148,7 +158,7 @@ modified_delete()
 }
 delete_line()
 {
-  Send {Home}{ShiftDown}{End}{ShiftUp}
+  Send {Home}{Home}{ShiftDown}{End}{ShiftUp}
   Sleep 10
   Send {Del}{Del}
   Return
@@ -211,7 +221,7 @@ F13 & e::key_end()
 F13 & r::Send {Blind}^r
 F13 & t::Send {Blind}^t
 F13 & y::Send {Blind}^y
-F13 & u::Send {Blind}^u
+F13 & u::kill_home()
 F13 & i::Send {Blind}^i
 F13 & o::Send {Blind}^o
 F13 & p::key_up()
